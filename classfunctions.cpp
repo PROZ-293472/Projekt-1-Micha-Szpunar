@@ -72,16 +72,22 @@ return os;
 }
 
 Tensor& Tensor::operator=(const Tensor &t){
-int x=t.dimx, y=t.dimy, z=t.dimz;
-Tensor temp(x,y,z);
-for (int i=0; i<x; i++){
-    for (int j=0; j<y; j++){
-        for(int k=0; k<z; k++){
-            temp.tab[i][j][k]=t.tab[i][j][k];
+dimx=t.dimx; dimy=t.dimy; dimz=t.dimz;
+tab = new double** [dimx];
+for (int i=0; i<dimx; i++){
+    tab[i]=new double* [dimy];
+    for(int j=0; j<dimy; j++){
+        tab[i][j]= new double [dimz];
+    }
+}
+for (int i=0; i<dimx; i++){
+    for (int j=0; j<dimy; j++){
+        for(int k=0; k<dimz; k++){
+            tab[i][j][k]=t.tab[i][j][k];
         }
     }
 }
-return temp;
+return *this;
 }
 
 bool Tensor::operator==(const Tensor &t){
@@ -110,15 +116,15 @@ return false;
 
 
 Tensor Tensor::operator+(const Tensor& t){
-if (dimx==t.dimx&&dimy==t.dimy&&dimz==t.dimz){
+if ((dimx==t.dimx)&&(dimy==t.dimy)&&(dimz==t.dimz)){
     Tensor p(dimx,dimy,dimz);
-    for (int i=0; i<dimx; i++){
+    /*for (int i=0; i<dimx; i++){
         for (int j=0; j<dimy; j++){
             for(int k=0; k<dimz; k++){
-                p.tab[i][j][k]=val+t.val;
+                p.tab[i][j][k]=tab[i][j][k]+t.tab[i][j][k];
             }
         }
-    }
+    }*/
     return p;
 }
 else cerr<<MESSAGE;

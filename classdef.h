@@ -19,6 +19,8 @@ public:
     void operator-=(Tensor const  &t);
     Tensor operator*(Tensor const  &t);
     void operator*=(Tensor const  &t);
+    double read(int a, int b, int c);
+    void change(double w, int a, int b, int c);
 
 friend
     ostream& operator<< (ostream &os, const Tensor &t);

@@ -23,6 +23,13 @@ int main()
         cout<<"8. t3=t1+t2"<<endl;
         cout<<"9. t1+=t2"<<endl;
         cout<<"10. t3=t1-t2"<<endl;
+        cout<<"11. t1-=t2"<<endl;
+        cout<<"12. t1==t2"<<endl;
+        cout<<"13. t1!=t2"<<endl;
+        cout<<"14. t3=t1*t2"<<endl;
+        cout<<"15. t1*=t2"<<endl;
+        cout<<"16. znajdz w t1 element o danych wspolrzednych"<<endl;
+        cout<<"17. zamien w t1 element o danych wspolrzednych"<<endl;
 
 
 
@@ -58,8 +65,44 @@ int main()
         case 9:
             t1+=t2;
             break;
+        case 10:
+            t3=t1-t2;
+            cout<<t3;
+            break;
+        case 11:
+            t1-=t2;
+            break;
+        case 12:
+            bool czy;
+            czy=(t1==t2);
+            cout<<czy<<endl;
+            break;
+        case 13:
+            bool czy2;
+            czy2=(t1!=t2);
+            cout<<czy2<<endl;
+            break;
+        case 14:
+            t3=t1*t2;
+            cout<<t3;
+            break;
+        case 15:
+            t1*=t2;
+            break;
+        case 16:
+            int a, b, c;
+            cin>>a>>b>>c;
+            cout<<t1.read(a,b,c)<<endl;
+            break;
+        case 17:
+            int d, e, f;
+            cin>>d>>e>>f;
+            double w;
+            cin>>w;
+            t1.change(w,d,e,f);
         }
 
     }
     return 0;
 }
+

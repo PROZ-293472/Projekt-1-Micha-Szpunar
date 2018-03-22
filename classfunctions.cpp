@@ -25,7 +25,7 @@ Tensor::Tensor(Tensor const &t){
 	for(int i = 0; i<t.dimx; i++){
 		tab[i] = new double *[t.dimy];
 		for(int j=0; j< t.dimy; j++) {
-		    tab[j][j]=new double [t.dimz];
+		    tab[i][j]=new double [t.dimz];
             for (int k=0; k<t.dimz; k++){
                 tab[i][j][k]=t.tab[i][j][k];
             }
@@ -118,13 +118,13 @@ return false;
 Tensor Tensor::operator+(const Tensor& t){
 if ((dimx==t.dimx)&&(dimy==t.dimy)&&(dimz==t.dimz)){
     Tensor p(dimx,dimy,dimz);
-    /*for (int i=0; i<dimx; i++){
+    for (int i=0; i<dimx; i++){
         for (int j=0; j<dimy; j++){
             for(int k=0; k<dimz; k++){
                 p.tab[i][j][k]=tab[i][j][k]+t.tab[i][j][k];
             }
         }
-    }*/
+    }
     return p;
 }
 else cerr<<MESSAGE;
@@ -204,3 +204,18 @@ else{
 
 }
 }
+
+double Tensor::read(int a, int b, int c){
+    if((a-1>dimx)||(b-1>dimy)||(c-1>dimz)) {
+        cout<<"No match!"<<endl;
+        return -1;
+    }
+    else return tab[a-1][b-1][c-1];
+}
+
+void Tensor::change(double w, int a, int b, int c){
+    if(a-1>dimx||b-1>dimy||c-1>dimz) cerr<<"No match!"<<endl;
+    else tab[a-1][b-1][c-1]=w;
+    return;
+}
+
